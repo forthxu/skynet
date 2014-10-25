@@ -29,12 +29,13 @@ void socket_server_start(struct socket_server *, uintptr_t opaque, int id);
 
 // return -1 when error
 int64_t socket_server_send(struct socket_server *, int id, const void * buffer, int sz);
+void socket_server_send_lowpriority(struct socket_server *, int id, const void * buffer, int sz);
 
 // ctrl command below returns id
 int socket_server_listen(struct socket_server *, uintptr_t opaque, const char * addr, int port, int backlog);
 int socket_server_connect(struct socket_server *, uintptr_t opaque, const char * addr, int port);
 int socket_server_bind(struct socket_server *, uintptr_t opaque, int fd);
 
-int socket_server_block_connect(struct socket_server *, uintptr_t opaque, const char * addr, int port);
+void socket_server_nodelay(struct socket_server *, int id);
 
 #endif
